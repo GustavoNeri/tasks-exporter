@@ -14,6 +14,25 @@ As dependências são listadas em `requirements.txt`:
 - `openpyxl`
 - `python-docx`
 
+## Credenciais e variáveis de ambiente
+Este projeto lê o usuário e a senha a partir de variáveis de ambiente para não deixar credenciais no código.
+
+Defina estas variáveis antes de executar os scripts:
+
+```bash
+export TAREFAS_USER="seu_usuario"
+export TAREFAS_PASS="sua_senha"
+```
+
+No Windows PowerShell:
+
+```powershell
+$env:TAREFAS_USER = "seu_usuario"
+$env:TAREFAS_PASS = "sua_senha"
+```
+
+Se quiser, crie um arquivo `.env` local e adicione-o a `.gitignore`, mas não comite esse arquivo no repositório.
+
 ## Instalação das dependências
 
 ### Ubuntu 20.04

@@ -20,8 +20,8 @@ from copy import deepcopy
 # ==========================================
 # CONFIGURAÇÕES DO USUÁRIO
 # ==========================================
-USUARIO = "gustavo.souza@amlconsulting.com.br"
-SENHA = "Gu@aml"
+USUARIO = os.getenv("TAREFAS_USER")
+SENHA = os.getenv("TAREFAS_PASS")
 IDS_FUNCIONARIOS = [65, 270, 271, 74, 75, 68]  # Adicione aqui os IDs dos funcionários (ex: [278, 279])
 # 65  - Diovane Barbieri Gabriel
 # 270 - Gustavo Neri
@@ -493,8 +493,8 @@ def editar_docx_funcionario(template_path, output_path, funcionario_id, lista_ta
         return False
 
 def main():
-    if USUARIO == "SEU_USUARIO" or SENHA == "SUA_SENHA":
-        print("Erro: Por favor, configure seu USUÁRIO e SENHA no início do script.")
+    if not USUARIO or not SENHA:
+        print("Erro: por favor configure as variáveis de ambiente TAREFAS_USER e TAREFAS_PASS.")
         sys.exit(1)
         
     # Calcular datas do Word (mantem a regra original da proxima semana)
