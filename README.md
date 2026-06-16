@@ -15,23 +15,24 @@ As dependências são listadas em `requirements.txt`:
 - `python-docx`
 
 ## Credenciais e variáveis de ambiente
-Este projeto lê o usuário e a senha a partir de variáveis de ambiente para não deixar credenciais no código.
+Este projeto lê o usuário e a senha a partir de um arquivo `.env` usando `python-dotenv`.
 
-Defina estas variáveis antes de executar os scripts:
+### Configuração
+
+1. Copie o arquivo `.env.example` para `.env`:
 
 ```bash
-export TAREFAS_USER="seu_usuario"
-export TAREFAS_PASS="sua_senha"
+cp .env.example .env
 ```
 
-No Windows PowerShell:
+2. Edite o arquivo `.env` com suas credenciais:
 
-```powershell
-$env:TAREFAS_USER = "seu_usuario"
-$env:TAREFAS_PASS = "sua_senha"
+```
+TAREFAS_USER=seu_usuario@amlconsulting.com.br
+TAREFAS_PASS=sua_senha
 ```
 
-Se quiser, crie um arquivo `.env` local e adicione-o a `.gitignore`, mas não comite esse arquivo no repositório.
+3. **Importante**: O arquivo `.env` está configurado no `.gitignore`, portanto nunca será commitado. Mantenha suas credenciais seguras localmente.
 
 ## Instalação das dependências
 
