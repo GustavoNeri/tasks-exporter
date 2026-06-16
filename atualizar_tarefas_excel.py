@@ -6,7 +6,6 @@ import math
 import shutil
 import datetime
 from dotenv import load_dotenv
-
 # Carregar variáveis de ambiente do arquivo .env
 load_dotenv()
 
@@ -17,8 +16,6 @@ except ImportError:
 import requests
 from bs4 import BeautifulSoup
 import openpyxl
-from docx import Document
-from docx.shared import Pt, RGBColor
 from copy import copy
 from copy import deepcopy
 

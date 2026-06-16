@@ -13,6 +13,7 @@ As dependências são listadas em `requirements.txt`:
 - `beautifulsoup4`
 - `openpyxl`
 - `python-docx`
+- `python-dotenv`
 
 ## Credenciais e variáveis de ambiente
 Este projeto lê o usuário e a senha a partir de um arquivo `.env` usando `python-dotenv`.
