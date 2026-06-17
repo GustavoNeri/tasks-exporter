@@ -173,6 +173,18 @@ def obter_valor_select(soup, nome_campo):
 
     return ""
 
+def obter_valor_input(soup, nome_campo):
+    """
+    Retorna o atributo value de um input.
+    """
+
+    campo = soup.find("input", {"name": nome_campo})
+
+    if not campo:
+        return ""
+
+    return campo.get("value", "").strip()
+
 def extrair_dados_tarefa_por_seletores(soup):
     """Extrai dados da tarefa usando seletores corretos para a estrutura real"""
     dados = {}
@@ -215,6 +227,28 @@ def extrair_dados_tarefa_por_seletores(soup):
             if horas:
                 dados["estimativa_raw"] = horas
 
+    except Exception:
+        pass
+
+    # Data de entrega atual
+    try:
+        data_entrega = obter_valor_input(
+            soup,
+            "data_entrega"
+        )
+        if data_entrega:
+            dados["entrega_em"] = data_entrega
+    except Exception:
+        pass
+
+    # Ordem atual
+    try:
+        ordem = obter_valor_input(
+            soup,
+            "ordem"
+        )
+        if ordem:
+            dados["ordem"] = ordem
     except Exception:
         pass
 
@@ -269,16 +303,6 @@ def extrair_dados_tarefa_por_seletores(soup):
                 match_data = re.search(r"\d{1,2}/\d{1,2}/\d{4}", incluido_em_text)
                 if match_data:
                     dados["incluido_em"] = match_data.group(0)
-            
-            if len(lis) > 7:
-                entrega_em_text = lis[7].get_text(strip=True)
-                match_data = re.search(r"\d{1,2}/\d{1,2}/\d{4}", entrega_em_text)
-                if match_data:
-                    dados["entrega_em"] = match_data.group(0)
-            
-            if len(lis) > 8:
-                ordem_text = lis[8].get_text(strip=True)
-                dados["ordem"] = extrair_texto_apos_dois_pontos(ordem_text)
 
     except Exception as e:
         print("  ! Erro ao extrair informacoes: " + str(e))
